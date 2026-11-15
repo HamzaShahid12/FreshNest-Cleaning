@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /admin
+Disallow: /staff
+Disallow: /account
+Disallow: /book/confirmation
+Allow: /
+
+Sitemap: /sitemap.xml
