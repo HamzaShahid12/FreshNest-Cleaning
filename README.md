@@ -1,3 +1,21 @@
+## Screenshots
+
+<p align="center">
+  <img src="docs/screenshots/home.png" alt="Home page" width="49%">
+  <img src="docs/screenshots/booking.png" alt="Booking wizard with map" width="49%">
+</p>
+
+<p align="center">
+  <img src="docs/screenshots/admin-dashboard.png" alt="Admin dashboard" width="49%">
+  <img src="docs/screenshots/branding.png" alt="Branding and banners" width="49%">
+</p>
+
+<p align="center">
+  <img src="docs/screenshots/mobile.png" alt="Mobile view" width="30%">
+</p>
+
+
+
 # FreshNest Cleaning Services
 
 Laravel 12 + Vue 3 (Composition API) + Inertia + Tailwind + MySQL. Public marketing site, booking wizard with server-side pricing, customer portal, employee portal, admin dashboard, role-based access, email notifications and Stripe-ready payments.
