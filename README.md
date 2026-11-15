@@ -10,10 +10,6 @@
   <img src="docs/screenshots/branding.png" alt="Branding and banners" width="49%">
 </p>
 
-<p align="center">
-  <img src="docs/screenshots/mobile.png" alt="Mobile view" width="30%">
-</p>
-
 
 
 # FreshNest Cleaning Services
