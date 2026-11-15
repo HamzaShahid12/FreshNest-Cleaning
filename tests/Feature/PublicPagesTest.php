@@ -54,6 +54,18 @@ class PublicPagesTest extends TestCase
         $this->assertDatabaseCount('newsletter_subscribers', 1);
     }
 
+    public function test_header_menu_lists_active_services_and_areas(): void
+    {
+        $service = \App\Models\Service::factory()->create(['name' => 'Window Cleaning', 'slug' => 'window-cleaning', 'is_active' => true]);
+        \App\Models\Service::factory()->create(['name' => 'Hidden Service', 'slug' => 'hidden-service', 'is_active' => false]);
+        \App\Models\ServiceArea::create(['name' => 'Lahore', 'slug' => 'lahore', 'is_active' => true]);
+
+        $this->get('/')->assertOk()->assertInertia(fn ($page) => $page
+            ->has('nav.services', 1)
+            ->where('nav.services.0.slug', $service->slug)
+            ->where('nav.areas.0.slug', 'lahore'));
+    }
+
     public function test_area_check_accepts_a_city_or_a_postal_code(): void
     {
         \App\Models\ServiceArea::create(['name' => 'Austin', 'slug' => 'austin', 'zip_codes' => '78701', 'is_active' => true]);

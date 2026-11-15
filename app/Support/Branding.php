@@ -29,6 +29,22 @@ class Branding
         'legal' => 'Privacy / Terms pages',
     ];
 
+    /** Logo height in pixels where it appears (header bar is 64 px tall, so its maximum is 56). */
+    public const SIZES = ['header' => ['default' => 36, 'min' => 20, 'max' => 56], 'footer' => ['default' => 36, 'min' => 20, 'max' => 120]];
+
+    public static function logoHeight(string $place): int
+    {
+        $c = self::SIZES[$place];
+        $v = Setting::get("brand_logo_height_{$place}");
+
+        return is_numeric($v) ? max($c['min'], min($c['max'], (int) $v)) : $c['default'];
+    }
+
+    public static function setLogoHeight(string $place, int $px): void
+    {
+        Setting::put("brand_logo_height_{$place}", (string) $px);
+    }
+
     public static function keys(): array
     {
         return array_merge([self::LOGO], array_keys(self::PAGES));
@@ -79,7 +95,7 @@ class Branding
             $banners[$page] = self::bannerUrl($page);
         }
 
-        return ['logo' => self::logoUrl(), 'banners' => $banners];
+        return ['logo' => self::logoUrl(), 'banners' => $banners, 'logo_height' => ['header' => self::logoHeight('header'), 'footer' => self::logoHeight('footer')]];
     }
 
     /** Store an uploaded image, replacing (and deleting) the previous one. */

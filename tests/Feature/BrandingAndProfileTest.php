@@ -130,4 +130,18 @@ class BrandingAndProfileTest extends TestCase
         $this->actingAs($admin)->put('/admin/settings', ['business_lat' => '', 'business_lng' => ''])->assertSessionHasNoErrors();
         $this->get('/contact')->assertInertia(fn ($page) => $page->where('site.lat', null));
     }
+
+    public function test_admin_can_set_the_header_and_footer_logo_size(): void
+    {
+        $admin = User::factory()->admin()->create();
+
+        $this->get('/')->assertInertia(fn ($page) => $page->where('brand.logo_height.header', 36)->where('brand.logo_height.footer', 36));
+
+        $this->actingAs($admin)->post('/admin/branding-size', ['header' => 48, 'footer' => 90])->assertSessionHasNoErrors();
+        $this->get('/')->assertInertia(fn ($page) => $page->where('brand.logo_height.header', 48)->where('brand.logo_height.footer', 90));
+
+        $this->actingAs($admin)->post('/admin/branding-size', ['header' => 80, 'footer' => 90])->assertSessionHasErrors('header');
+        $this->actingAs($admin)->post('/admin/branding-size', ['header' => 40, 'footer' => 5])->assertSessionHasErrors('footer');
+        $this->actingAs(User::factory()->manager()->create())->post('/admin/branding-size', ['header' => 40, 'footer' => 40])->assertForbidden();
+    }
 }

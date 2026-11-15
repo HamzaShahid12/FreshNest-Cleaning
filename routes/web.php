@@ -134,6 +134,7 @@ Route::middleware(['auth', 'force.password', 'role:super_admin,admin,manager'])-
         Route::put('/settings', [Admin\SettingsController::class, 'update'])->name('settings.update');
         Route::get('/audit-logs', [Admin\AuditLogController::class, 'index'])->name('audit');
         Route::get('/branding', [Admin\BrandingController::class, 'index'])->name('branding');
+        Route::post('/branding-size', [Admin\BrandingController::class, 'size'])->name('branding.size');
         Route::post('/branding/{key}', [Admin\BrandingController::class, 'update'])->where('key', '[a-z_]+')->name('branding.update');
         Route::delete('/branding/{key}', [Admin\BrandingController::class, 'destroy'])->where('key', '[a-z_]+')->name('branding.reset');
     });

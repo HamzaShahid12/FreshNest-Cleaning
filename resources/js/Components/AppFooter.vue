@@ -21,7 +21,7 @@ const legal = [['Privacy Policy', '/legal/privacy'], ['Terms & Conditions', '/le
     <footer class="bg-ink text-gray-300">
         <div class="container-x grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-5">
             <div class="lg:col-span-2">
-                <BrandLogo dark />
+                <BrandLogo dark place="footer" />
                 <p class="mt-4 max-w-sm text-sm leading-relaxed text-gray-400">{{ site.tagline }} Trusted residential and commercial cleaning for homeowners, renters, landlords and offices.</p>
                 <ul class="mt-5 space-y-2 text-sm">
                     <li v-if="site.phone" class="flex items-center gap-2"><Icon name="phone" class="h-4 w-4 text-brand" /><a :href="`tel:${site.phone}`" class="hover:text-white">{{ site.phone }}</a></li>

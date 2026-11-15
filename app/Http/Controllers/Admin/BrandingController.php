@@ -30,7 +30,22 @@ class BrandingController extends Controller
             ];
         }
 
-        return Inertia::render('Admin/Branding', ['items' => $items]);
+        return Inertia::render('Admin/Branding', ['items' => $items, 'sizes' => ['header' => Branding::logoHeight('header'), 'footer' => Branding::logoHeight('footer')], 'limits' => Branding::SIZES]);
+    }
+
+    public function size(Request $request): RedirectResponse
+    {
+        $h = Branding::SIZES['header'];
+        $f = Branding::SIZES['footer'];
+        $data = $request->validate([
+            'header' => ['required', 'integer', "between:{$h['min']},{$h['max']}"],
+            'footer' => ['required', 'integer', "between:{$f['min']},{$f['max']}"],
+        ]);
+        Branding::setLogoHeight('header', (int) $data['header']);
+        Branding::setLogoHeight('footer', (int) $data['footer']);
+        AuditLog::record('branding.updated', null, 'Logo size changed');
+
+        return back()->with('success', 'Logo size saved.');
     }
 
     public function update(Request $request, string $key): RedirectResponse

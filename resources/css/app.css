@@ -18,7 +18,7 @@
     .h-section { @apply font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl; }
     .lead { @apply text-lg leading-relaxed text-body; }
 
-    .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition duration-150 focus-visible:outline disabled:cursor-not-allowed disabled:opacity-60; }
+    .btn { @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl px-5 py-2.5 text-sm font-semibold transition duration-150 focus-visible:outline disabled:cursor-not-allowed disabled:opacity-60; }
     .btn-primary { @apply bg-brand text-white shadow-sm hover:bg-brand-dark active:translate-y-px; }
     .btn-dark { @apply bg-ink text-white hover:bg-black; }
     .btn-outline { @apply border border-gray-300 bg-white text-ink hover:border-brand hover:text-brand; }
